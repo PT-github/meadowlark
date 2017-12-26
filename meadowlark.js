@@ -28,7 +28,8 @@ app.get('/', function(req, res){
 app.get('/about*', function(req, res){
 	// res.type('text/plain');
 	// res.send('About Meadowlark Travel');
-	res.render('about');
+	var randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+	res.render('about', {fortune: randomFortune});
 });
 
 //定制404页面
@@ -51,3 +52,12 @@ app.use(function(err, req, res, next){
 app.listen(app.get('port'), function(){
 	console.log('Express started on http://localhost:' + app.get('port') + ';press Ctrl-C to terminate.');
 });
+
+//视图中的动态内容
+var fortunes = [
+	"幸运饼干1",
+	"幸运饼干2",
+	"幸运饼干3",
+	"幸运饼干4",
+	"幸运饼干5"
+];
